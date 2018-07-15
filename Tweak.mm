@@ -300,11 +300,6 @@ void _Character_Destroy(void *character){
 	aimbotManager->removeEnemyGivenObject(character);
 }
 
-// shoot through walls
-int _GameSystem_GetHitMaterial(void *gameSystem, void *raycastHit, int wallPenetration, int damagePercent){
-	return 0;
-}
-
 %ctor {
 	aimbotManager = new AimbotManager();
 	me = new me_t();
@@ -312,7 +307,6 @@ int _GameSystem_GetHitMaterial(void *gameSystem, void *raycastHit, int wallPenet
 	HOOK(0x1002625B4, _Character_Gameplay_Update, Character_Gameplay_Update);
 	HOOK(0x100260E04, _Character_SetRotation, Character_SetRotation);
 	HOOK(0x100261F28, _Character_Destroy, Character_Destroy);
-	HOOKNOORIG(0x100294DA8, _GameSystem_GetHitMaterial);
 }
 
 uint64_t getRealOffset(uint64_t offset){
